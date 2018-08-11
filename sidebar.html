@@ -1,0 +1,111 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+  <style type="text/css">
+
+  #sidebar {
+      width: 250px;
+      position: fixed;
+      top: 0;
+      height: 100vh;
+      z-index: 999;
+      background: #000000;
+      transition: all 0.3s;
+      overflow-y: scroll;
+  }
+  #sidebar.active {
+      left: 0;
+  }
+
+  .overlay {
+      display: none;
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 998;
+      opacity: 0;
+      transition: all 0.5s ease-in-out;
+  }
+  .overlay.active {
+      display: block;
+      opacity: 1;
+  }
+
+  #content {
+      width: 100%;
+      padding: 20px;
+      min-height: 100vh;
+      transition: all 0.3s;
+      position: absolute;
+      top: 0;
+      /* right: 0; */
+      margin-left: 250px;
+  }
+
+  #sidebarCollapse {
+    display: none
+  }
+
+  @media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #sidebarCollapse {
+        display: block;
+    }
+    #content {
+        margin-left: 0;
+    }
+}
+  </style>
+</head>
+<body>
+<div class="wrapper">
+    <!-- Sidebar -->
+    <nav id="sidebar">
+    </nav>
+
+    <!-- Page Content -->
+    <div id="content">
+        <nav class="navbar">
+          <button type="button" id="close-sidebar">
+              <span>Sidebar Close</span>
+          </button>
+        </nav>
+
+        ref: https://bootstrapious.com/p/bootstrap-sidebar
+    </div>
+
+    <!-- Dark Overlay element -->
+    <div class="overlay"></div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.overlay').on('click', function () {
+            // hide sidebar
+            $('#sidebar').removeClass('active');
+            // hide overlay
+            $('.overlay').removeClass('active');
+        });
+
+        $('#close-sidebar').on('click', function () {
+            // open sidebar
+            $('#sidebar').addClass('active');
+            // fade in the overlay
+            $('.overlay').addClass('active');
+        });
+    });
+</script>
+</body>
+</html>
